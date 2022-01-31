@@ -112,7 +112,7 @@ function checkSetpoint(pendulum) {
 		}
 	}
 
-	if((1e-3 * (Date.now() - competition.startTime)) % 30 < 5 && servo_active_state == "active") {
+	if((1e-3 * (Date.now() - competition.startTime)) % 60 < 5 && servo_active_state == "active") {
 		if(!submitted) {
 			// //https://docs.google.com/forms/d/e/1FAIpQLScXBVA4g08ILIxItPfwXysRlW5baLDNKQn9qASN8PUYahFf-Q/viewform?usp=pp_url&entry.1564464553=name&entry.1951419686=43
 			// link_part_1 = "https://docs.google.com/forms/d/e/1FAIpQLScXBVA4g08ILIxItPfwXysRlW5baLDNKQn9qASN8PUYahFf-Q/viewform?usp=pp_url&entry.1564464553=";
