@@ -33,7 +33,7 @@ kineval.initRobotJoints = function initRobotJoints() {
 /* STENCIL START */ 
     // STENCIL: complete kinematic hierarchy of robot for convenience.
     //   robot description only specifies parent and child links for joints.
-    //   additionally specify parent and child joints for each link
+    //   additionally specify parent and CHILDREN joints for each link
 
 
 
