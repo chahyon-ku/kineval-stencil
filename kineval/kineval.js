@@ -388,7 +388,7 @@ kineval.initScene = function initScene() {
 
     // instantiate threejs camera controls
     camera_controls = new THREE.OrbitControls( camera );
-    camera_controls.addEventListener( 'change', renderer );
+    camera_controls.addEventListener( 'change', kineval.renderScene );
 
     // create world floor
     // KE T creates error : "TypeError: n.x is undefined" 
