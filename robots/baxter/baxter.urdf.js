@@ -192,13 +192,13 @@ robot.joints.headpan = {
     limit : {lower:-3.14, upper:3.14}
 };
 
-robot.joints.headnod = { 
-    type : "fixed",
-    parent: "head", child: "screen",
-    axis : [0,0,1],
-    origin : {xyz: [0.1227,0,0], rpy:[1.75057, 0, 1.57079632679]},
-    limit : {lower:-3.14, upper:3.14}
-};
+// robot.joints.headnod = { 
+//     type : "fixed",
+//     parent: "head", child: "screen",
+//     axis : [0,0,1],
+//     origin : {xyz: [0.1227,0,0], rpy:[1.75057, 0, 1.57079632679]},
+//     limit : {lower:-3.14, upper:3.14}
+// };
 
 //merge of head_camera and display_joint
 robot.joints.display_joint = { 

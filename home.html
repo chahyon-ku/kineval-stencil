@@ -93,6 +93,7 @@
 <script src="experimental/point_clouds/three_objects.pcd.js"></script> 
 <script src="experimental/point_clouds/eight_objects.pcd.js"></script> 
 -->
+<script src="kineval/kineval_mobile_manipulate.js"></script>
 
 <script>
 
@@ -192,6 +193,13 @@ function my_animate() {
     // if requested, perform configuration space motion planning to home pose
     kineval.planMotionRRTConnect();
 
+    kineval.updateObjects();
+    kineval.robotMobileManipulateIterate();
+    if (typeof isTaskCompleted != 'undefined') {
+        if (isTaskCompleted()) {
+            textbar.innerHTML = "Task Completed!"; 
+        }
+    }
 }
 
 </script>
