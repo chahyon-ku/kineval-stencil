@@ -201,14 +201,14 @@ robot.joints.headpan = {
 // };
 
 //merge of head_camera and display_joint
-robot.joints.display_joint = { 
-    type : "fixed",
-    parent: "head", child: "screen",
-    axis : [0,0,1],
-    //origin : {xyz: [0.12839,-0.016,0.06368], rpy:[1.75057,0,1.57079632679]},
-    origin : {xyz: [0.12839,-0.016,0.06368], rpy:[Math.PI/2,0,0]},
-    limit : {lower:-3.14, upper:3.14}
-};
+// robot.joints.display_joint = { 
+//     type : "fixed",
+//     parent: "head", child: "screen",
+//     axis : [0,0,1],
+//     //origin : {xyz: [0.12839,-0.016,0.06368], rpy:[1.75057,0,1.57079632679]},
+//     origin : {xyz: [0.12839,-0.016,0.06368], rpy:[Math.PI/2,0,0]},
+//     limit : {lower:-3.14, upper:3.14}
+// };
 
 robot.joints.right_torso_arm_mount = { 
     type : "fixed",
