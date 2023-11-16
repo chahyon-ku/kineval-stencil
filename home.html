@@ -193,6 +193,13 @@ function my_animate() {
     // if requested, perform configuration space motion planning to home pose
     kineval.planMotionRRTConnect();
 
+    kineval.updateObjects();
+    kineval.robotMobileManipulateIterate();
+    if (typeof isTaskCompleted != 'undefined') {
+        if (isTaskCompleted()) {
+            textbar.innerHTML = "Task Completed!"; 
+        }
+    }
 }
 
 </script>
