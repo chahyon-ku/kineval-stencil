@@ -1034,4 +1034,78 @@ function tempPointCloud() {
 */  // normal computation
 }
 
+// Mobile manipulate
 
+kineval.initObjects = function initObjects() {
+}
+
+kineval.updateObjects = function updateGraspedObject() {
+    if (typeof objs == 'undefined') {
+        console.log('no objects to init')
+        return;
+    }
+
+    for (obj_name in objs) {
+        obj = objs[obj_name]
+        if (typeof obj.geom != 'undefined' && typeof obj.geom_init == 'undefined') {
+            obj.geom_init = true;
+            obj.geom.position.x = obj.origin.xyz[0]
+            obj.geom.position.y = obj.origin.xyz[1]
+            obj.geom.position.z = obj.origin.xyz[2]
+            obj.geom.rotation.x = obj.origin.rpy[0]
+            obj.geom.rotation.y = obj.origin.rpy[1]
+            obj.geom.rotation.z = obj.origin.rpy[2]
+            scene.add(obj.geom)
+        }
+    }
+    if (typeof robot.grasped_object == 'undefined') {
+        return;
+    }
+
+    obj = objs[robot.grasped_object];
+    obj_pose = matrix_multiply(robot.joints[robot.endeffector.frame].xform, robot.endeffector.position);
+    obj.origin.xyz = [obj_pose[3, 0], obj_pose[3, 1], obj_pose[3, 2]];
+    obj.geom.position.x = obj.origin.xyz[0];
+    obj.geom.position.y = obj.origin.xyz[1];
+    obj.geom.position.z = obj.origin.xyz[2];
+}
+
+kineval.graspObject = function graspObject() {
+    if (typeof robot.grasped_object != 'undefined') {
+        console.log('already grasping an object ' + robot.grasped_object);
+        return false;
+    }
+
+    eef_pose = matrix_multiply(robot.joints[robot.endeffector.frame].xform, robot.endeffector.position);
+    eef_xyz = [eef_pose[3, 0], eef_pose[3, 1], eef_pose[3, 2]];
+    for (obj_name in objs) {
+        obj = objs[obj_name];
+        if (obj.graspable == false) {
+            continue;
+        }
+        obj_xyz = obj.origin.xyz;
+        dist = Math.sqrt(Math.pow(eef_xyz[0] - obj_xyz[0], 2) + Math.pow(eef_xyz[1] - obj_xyz[1], 2) + Math.pow(eef_xyz[2] - obj_xyz[2], 2));
+        if (dist < 0.01) {
+            robot.grasped_object = obj_name;
+            obj.grasped = true;
+            console.log('grasping object: ' + obj_name);
+            return true;
+        }
+    }
+
+    console.log('no object to grasp');
+    return false;
+}
+
+kineval.releaseObject = function releaseObject() {
+    if (typeof robot.grasped_object == 'undefined') {
+        console.log('no object to release');
+        return false;
+    }
+
+    console.log('releasing object:', robot.grasped_object);
+    objs[robot.grasped_object].grasped = false;
+    robot.grasped_object = undefined;
+
+    return true;
+}
