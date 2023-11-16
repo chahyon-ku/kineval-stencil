@@ -44,7 +44,9 @@ kineval.robotMobileManipulateIterate = function robotMobileManipulateIterate() {
         }
         cur_time = Date.now();
         // TODO: perform a single iteration of ik with kineval.iterateIK() to move the eef towards the bubble
-    } else if (mm_state == 'release_cube') {
+    } else if (robotMobileManipulateIterate.mm_state == 'release_cube') {
         // TODO: call kineval.releaseObject() to release the cube
+    } else if (robotMobileManipulateIterate.mm_state == 'complete') {
+        // DO NOT DO ANYTHING HERE
     }
 }
